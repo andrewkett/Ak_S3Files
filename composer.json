@@ -1,0 +1,16 @@
+{
+    "name": "Ak/S3filesystem",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Save magento media files directly to amazon s3",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*",
+        "aws/aws-sdk-php": "2.6.*"
+    },
+    "authors":[
+        {
+            "name":"Andrew Kett",
+            "email":"ajkett@gmail.com"
+        }
+    ]
+}

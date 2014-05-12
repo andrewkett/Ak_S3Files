@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ak_S3files>
+            <version>1.0.0</version>
+        </Ak_S3files>
+    </modules>
+    <global>
+        <blocks>
+            <ak_S3files>
+                <class>Ak_S3files_Block</class>
+            </ak_S3files>
+        </blocks>
+        <helpers>
+            <ak_S3files>
+                <class>Ak_S3files_Helper</class>
+            </ak_S3files>
+            <core>
+                <rewrite>
+                    <file_storage_database>Ak_S3files_Helper_File_Storage_Database</file_storage_database>
+                </rewrite>
+            </core>
+        </helpers>
+        <models>
+            <ak_S3files>
+                <class>Ak_S3files_Model</class>
+            </ak_S3files>
+
+        </models>
+        <resources>
+            <ak_S3files_setup>
+                <setup>
+                    <module>Ak_S3files</module>
+                </setup>
+            </ak_S3files_setup>
+        </resources>
+
+        <events>
+            <controller_front_init_before>
+                <observers>
+                    <ak_S3files_initstream>
+                        <type>model</type>
+                        <class>ak_S3files/observer</class>
+                        <method>initStream</method>
+                    </ak_S3files_initstream>
+                </observers>
+            </controller_front_init_before>
+
+            <controller_front_init_before>
+                <observers>
+                    <ak_S3files_initdirs>
+                        <type>model</type>
+                        <class>ak_S3files/observer</class>
+                        <method>setAssetDirectories</method>
+                    </ak_S3files_initdirs>
+                </observers>
+            </controller_front_init_before>
+
+            <controller_front_init_before>
+                <observers>
+                    <ak_S3files_initoverrides>
+                        <type>model</type>
+                        <class>ak_S3files/observer</class>
+                        <method>includeOverrides</method>
+                    </ak_S3files_initoverrides>
+                </observers>
+            </controller_front_init_before>
+
+        </events>
+    </global>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ak_s3files_aws>
+                                            <title>S3files Module Section</title>
+                                        </ak_s3files_aws>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>
