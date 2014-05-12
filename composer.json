@@ -4,6 +4,7 @@
     "type": "magento-module",
     "description": "Save magento media files directly to amazon s3",
     "require": {
+        "php": ">=5.3.3",
         "magento-hackathon/magento-composer-installer": "*",
         "aws/aws-sdk-php": "2.6.*"
     },
