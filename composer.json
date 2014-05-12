@@ -1,5 +1,5 @@
 {
-    "name": "Ak/S3filesystem",
+    "name": "andrewkett/s3files",
     "license": "OSL-3.0",
     "type": "magento-module",
     "description": "Save magento media files directly to amazon s3",
