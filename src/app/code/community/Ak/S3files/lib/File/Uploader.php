@@ -27,12 +27,9 @@
 /**
  * File upload class
  *
- * ATTENTION! This class must be used like abstract class and must added
- * validation by protected file extension list to extended class
- *
- * @category   Varien
- * @package    Varien_File
- * @author     Magento Core Team <core@magentocommerce.com>
+ * When the Ak_S3files extension is enabled this file will be loaded in place of the lib version of Varien_File_Uploader
+ * This file contains mostly the same code but some modifications so that it works with s3, any changes should be
+ * documented with comments
  */
 
 class Varien_File_Uploader

@@ -8,7 +8,7 @@ class Ak_S3files_Model_Observer
     const XML_PATH_AWS_KEY = "ak_s3files_aws/api/key";
     const XML_PATH_AWS_SECRET = "ak_s3files_aws/api/secret";
 
-    const XML_PATH_AWS_MEDIABUCKET = "ak_s3files_aws/s3/media_bucket";
+
 
     public function initStream()
     {
@@ -30,22 +30,15 @@ class Ak_S3files_Model_Observer
     public function setAssetDirectories()
     {
 
-        $mediaBucket = Mage::getStoreConfig(self::XML_PATH_AWS_MEDIABUCKET);
-
+        $mediaBucket = Mage::helper('ak_S3files')->getMediaDir();
 
         //set the media dir to an s3 url so that
         if ($mediaBucket) { //@todo && isValidBucket($mediaBucket) && s3StreamRegistered()
-            Mage::getConfig()->getOptions()->setMediaDir('s3://'.$mediaBucket);
+            Mage::getConfig()->getOptions()->setMediaDir($mediaBucket);
         }
 
-//        if (true) {
-//            Mage::getConfig()->getOptions()->setMediaDir('s3://andrewketttestmagento/media');
-//        }
-
-       // Mage::getConfig()->getOptions()->setLogDir('s3://andrewketttestmagento/log');
-
-        //Mage::getConfig()->getOptions()->setExportDir('s3://andrewketttestmagento/media');
-//        'app_dir' => string '/Users/andrewkett/Sites/dev/magentodevsites/community_1.8/public_html/app' (length=73)
+// other file path configs
+//      'app_dir' => string '/Users/andrewkett/Sites/dev/magentodevsites/community_1.8/public_html/app' (length=73)
 //      'base_dir' => string '/Users/andrewkett/Sites/dev/magentodevsites/community_1.8/public_html' (length=69)
 //      'code_dir' => string '/Users/andrewkett/Sites/dev/magentodevsites/community_1.8/public_html/app/code' (length=78)
 //      'design_dir' => string '/Users/andrewkett/Sites/dev/magentodevsites/community_1.8/public_html/app/design' (length=80)
@@ -66,6 +59,10 @@ class Ak_S3files_Model_Observer
 
     public function includeOverrides()
     {
+        // Including these files directly as early in the bootstrap process as possible allows us to override these
+        // classes with classes contained within the namespace of the extension. This is far from ideal but until I can
+        // find a better way to alter the functionality of these classes I would rather do this within this extensions
+        // namespace than put the code in the Varien namespace outside of this extension.
         require(realpath(dirname(__FILE__)).'/../lib/Io/File.php');
         require(realpath(dirname(__FILE__)).'/../lib/File/Uploader.php');
     }
