@@ -15,11 +15,11 @@
             <ak_S3files>
                 <class>Ak_S3files_Helper</class>
             </ak_S3files>
-            <core>
-                <rewrite>
-                    <file_storage_database>Ak_S3files_Helper_File_Storage_Database</file_storage_database>
-                </rewrite>
-            </core>
+            <!--<core>-->
+                <!--<rewrite>-->
+                    <!--<file_storage_database>Ak_S3files_Helper_File_Storage_Database</file_storage_database>-->
+                <!--</rewrite>-->
+            <!--</core>-->
         </helpers>
         <models>
             <ak_S3files>
