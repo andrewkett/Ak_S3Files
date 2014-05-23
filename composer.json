@@ -6,7 +6,8 @@
     "require": {
         "php": ">=5.3.3",
         "magento-hackathon/magento-composer-installer": "*",
-        "aws/aws-sdk-php": "2.6.*"
+        "aws/aws-sdk-php": "2.6.*",
+        "ajbonner/magento-composer-autoload": "*"
     },
     "authors":[
         {
