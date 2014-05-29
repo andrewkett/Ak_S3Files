@@ -3,7 +3,8 @@
 class Ak_S3files_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
-    const XML_PATH_AWS_MEDIABUCKET = "ak_s3files_aws/s3/media_bucket";
+    const XML_PATH_S3_MEDIABUCKET = "ak_s3files_aws/s3/media_bucket";
+    const XML_PATH_S3_ENABLED = "ak_s3files_aws/s3/enabled";
 
 
     /**
@@ -14,7 +15,7 @@ class Ak_S3files_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function pathIsS3($path)
     {
-        return true; //@todo if path starts with s3:// return true else return false
+        return strpos($path, 's3://') === 0;
     }
 
     /**
@@ -25,12 +26,17 @@ class Ak_S3files_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getMediaDir()
     {
-        $path = 's3://'.Mage::getStoreConfig(self::XML_PATH_AWS_MEDIABUCKET).'/media';
-
-        //@todo append a subdirectory if it exists in config, e.g s3://mybucketname/{subdirectory}
-
-        return $path;
+        return 's3://'.Mage::getStoreConfig(self::XML_PATH_S3_MEDIABUCKET).'/media';
     }
 
 
+    /**
+     * Is s3 storage enabled
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return (bool) Mage::getStoreConfig(self::XML_PATH_S3_ENABLED);
+    }
 }

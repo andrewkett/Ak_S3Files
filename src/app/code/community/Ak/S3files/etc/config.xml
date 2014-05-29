@@ -89,4 +89,11 @@
             </resources>
         </acl>
     </adminhtml>
+    <default>
+        <ak_s3files_aws>
+            <s3>
+                <enabled>0</enabled>
+            </s3>
+        </ak_s3files_aws>
+    </default>
 </config>

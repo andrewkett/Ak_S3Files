@@ -12,17 +12,20 @@ class Ak_S3files_Model_Observer
 
     public function initStream()
     {
-        $key = Mage::getStoreConfig(self::XML_PATH_AWS_KEY);
-        $secret = Mage::getStoreConfig(self::XML_PATH_AWS_SECRET);
 
-        // Create an Amazon S3 client object
-        $client = S3Client::factory(array(
-            'key'    => $key,
-            'secret' => $secret
-        ));
+        if (Mage::helper('ak_S3files')->isEnabled()) {
+            $key = Mage::getStoreConfig(self::XML_PATH_AWS_KEY);
+            $secret = Mage::getStoreConfig(self::XML_PATH_AWS_SECRET);
 
-        // Register the stream wrapper from a client object
-        $client->registerStreamWrapper();
+            // Create an Amazon S3 client object
+            $client = S3Client::factory(array(
+                'key'    => $key,
+                'secret' => $secret
+            ));
+
+            // Register the stream wrapper from a client object
+            $client->registerStreamWrapper();
+        }
     }
 
 
@@ -30,11 +33,13 @@ class Ak_S3files_Model_Observer
     public function setAssetDirectories()
     {
 
-        $mediaBucket = Mage::helper('ak_S3files')->getMediaDir();
+        if (Mage::helper('ak_S3files')->isEnabled()) {
+            $mediaBucket = Mage::helper('ak_S3files')->getMediaDir();
 
-        //set the media dir to an s3 url so that
-        if ($mediaBucket) { //@todo && isValidBucket($mediaBucket) && s3StreamRegistered()
-            Mage::getConfig()->getOptions()->setMediaDir($mediaBucket);
+            //set the media dir to an s3 url so that
+            if ($mediaBucket) { //@todo && isValidBucket($mediaBucket) && s3StreamRegistered()
+                Mage::getConfig()->getOptions()->setMediaDir($mediaBucket);
+            }
         }
 
 // other file path configs
@@ -59,12 +64,15 @@ class Ak_S3files_Model_Observer
 
     public function includeOverrides()
     {
-        // Including these files directly as early in the bootstrap process as possible allows us to override these
-        // classes with classes contained within the namespace of the extension. This is far from ideal but until I can
-        // find a better way to alter the functionality of these classes I would rather do this within this extensions
-        // namespace than put the code in the Varien namespace outside of this extension.
-        require(realpath(dirname(__FILE__)).'/../lib/Io/File.php');
-        require(realpath(dirname(__FILE__)).'/../lib/File/Uploader.php');
+        if (Mage::helper('ak_S3files')->isEnabled()) {
+
+            // Including these files directly as early in the bootstrap process as possible allows us to override these
+            // classes with classes contained within the namespace of the extension. This is far from ideal but until I can
+            // find a better way to alter the functionality of these classes I would rather do this within this extensions
+            // namespace than put the code in the Varien namespace outside of this extension.
+            require(realpath(dirname(__FILE__)).'/../lib/Io/File.php');
+            require(realpath(dirname(__FILE__)).'/../lib/File/Uploader.php');
+        }
     }
 
 }
