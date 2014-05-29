@@ -66,7 +66,8 @@ Configuration requires a few steps
 		}
 	]
 }
-``` 
+```
+* If you have existing media upload it to ```s3 aws s3 cp /path/to/media  s3://mymagentomediadirectoy/media```
 * You then need to add the bucket name and s3 user key to the s3files settings in magento
 * The final step is to update magentos media directory to that of the s3 bucket. It will be something like this, http://s3-ap-southeast-2.amazonaws.com/mymagentomediadirectoy/media/
 
