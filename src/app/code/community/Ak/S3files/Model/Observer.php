@@ -18,7 +18,7 @@ class Ak_S3files_Model_Observer
     public function initStream()
     {
 
-        if (Mage::helper('ak_S3files')->isEnabled()) {
+        if (Mage::helper('ak_s3files')->s3MediaEnabled()) {
             $key = Mage::getStoreConfig(self::XML_PATH_AWS_KEY);
             $secret = Mage::getStoreConfig(self::XML_PATH_AWS_SECRET);
 
@@ -55,8 +55,8 @@ class Ak_S3files_Model_Observer
     public function setAssetDirectories()
     {
 
-        if (Mage::helper('ak_S3files')->isEnabled()) {
-            $mediaBucket = Mage::helper('ak_S3files')->getMediaDir();
+        if (Mage::helper('ak_s3files')->s3MediaEnabled()) {
+            $mediaBucket = Mage::helper('ak_s3files')->getMediaDir();
 
             //set the media dir to an s3 url so that
             if ($mediaBucket) { //@todo && isValidBucket($mediaBucket) && s3StreamRegistered()
@@ -86,7 +86,7 @@ class Ak_S3files_Model_Observer
 
     public function includeOverrides()
     {
-        if (Mage::helper('ak_S3files')->isEnabled()) {
+        if (Mage::helper('ak_s3files')->s3MediaEnabled()) {
 
             // Including these files directly as early in the bootstrap process as possible allows us to override these
             // classes with classes contained within the namespace of the extension. This is far from ideal but until I can

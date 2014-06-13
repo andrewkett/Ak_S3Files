@@ -393,7 +393,7 @@ class Varien_Io_File extends Varien_Io_Abstract
 
 
 
-        //if( is_dir($dir)) { //@changed // !Mage::helper('ak_S3files')->pathIsS3($dir)
+        //if( is_dir($dir)) { //@changed // !Mage::helper('ak_s3files')->pathIsS3($dir)
         @chdir($this->_iwd);
         $this->_cwd = $dir; //@changed, removed realpath
         return true;

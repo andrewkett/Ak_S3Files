@@ -5,6 +5,7 @@ class Ak_S3files_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_S3_MEDIABUCKET = "ak_s3files_aws/s3/media_bucket";
     const XML_PATH_S3_ENABLED = "ak_s3files_aws/s3/enabled";
+    const XML_PATH_SCHEDULEDIMAGECACHE_ENABLED = "ak_s3files_aws/scheduledimagecache/enabled";
 
 
     /**
@@ -35,10 +36,19 @@ class Ak_S3files_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @return bool
      */
-    public function isEnabled()
+    public function s3MediaEnabled()
     {
         //return false;
         return (bool) Mage::getStoreConfig(self::XML_PATH_S3_ENABLED);
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function scheduledImageCacheEnabled()
+    {
+        return (bool) Mage::getStoreConfig(self::XML_PATH_SCHEDULEDIMAGECACHE_ENABLED);
     }
 
 

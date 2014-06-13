@@ -4,8 +4,6 @@ class Ak_S3files_Helper_Catalog_Image extends Mage_Catalog_Helper_Image
 {
 
 
-
-
     /**
      * Initialize Helper to work with Image
      *
@@ -58,16 +56,20 @@ class Ak_S3files_Helper_Catalog_Image extends Mage_Catalog_Helper_Image
      */
     public function __toString()
     {
-
         $this->log('-------');
-        if (true) {
+        if (Mage::helper('ak_s3files')->scheduledImageCacheEnabled()) {
             return $this->scheduledImageCacheToString();
         } else {
             return $this->lazyloadImageCacheToString();
         }
+    }
 
 
-//        $this->log('-------');
+
+    public function lazyloadImageCacheToString() {
+        return parent::__toString();
+
+        //        $this->log('-------');
 //        try {
 //            $model = $this->_getModel();
 //
@@ -118,12 +120,6 @@ class Ak_S3files_Helper_Catalog_Image extends Mage_Catalog_Helper_Image
 //            $url = Mage::getDesign()->getSkinUrl($this->getPlaceholder());
 //        }
 //        return $url;
-    }
-
-
-
-    public function lazyloadImageCacheToString() {
-        return parent::__toString();
     }
 
     public function  scheduledImageCacheToString() {
@@ -179,10 +175,8 @@ class Ak_S3files_Helper_Catalog_Image extends Mage_Catalog_Helper_Image
         return $url;
     }
 
-
-
     public function log($msg)
     {
-        Mage::helper('ak_S3files')->logImageEdit('Mage_Catalog_Helper_Image: '.$msg);
+        Mage::helper('ak_s3files')->logImageEdit('Mage_Catalog_Helper_Image: '.$msg);
     }
 }
