@@ -37,6 +37,7 @@ class Ak_S3files_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isEnabled()
     {
+        //return false;
         return (bool) Mage::getStoreConfig(self::XML_PATH_S3_ENABLED);
     }
 

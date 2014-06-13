@@ -2,6 +2,11 @@
 
 use Aws\S3\S3Client;
 
+use Guzzle\Log\MonologLogAdapter;
+use Guzzle\Plugin\Log\LogPlugin;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 class Ak_S3files_Model_Observer
 {
 
@@ -22,6 +27,23 @@ class Ak_S3files_Model_Observer
                 'key'    => $key,
                 'secret' => $secret
             ));
+
+
+            /* @todo change to mage log system */
+            // Create a log channel
+            $log = new Logger('aws');
+
+            $log->pushHandler(new StreamHandler(Mage::getBaseDir().'/var/log/s3_http.log', Logger::DEBUG));
+
+            // Create a log adapter for Monolog
+            $logger = new MonologLogAdapter($log);
+
+            // Create the LogPlugin
+            $logPlugin = new LogPlugin($logger);
+
+
+            $client->addSubscriber($logPlugin);
+
 
             // Register the stream wrapper from a client object
             $client->registerStreamWrapper();

@@ -15,6 +15,13 @@
             <ak_S3files>
                 <class>Ak_S3files_Helper</class>
             </ak_S3files>
+
+            <catalog>
+                <rewrite>
+                    <image>Ak_S3files_Helper_Catalog_Image</image>
+                </rewrite>
+            </catalog>
+
             <!--<core>-->
                 <!--<rewrite>-->
                     <!--<file_storage_database>Ak_S3files_Helper_File_Storage_Database</file_storage_database>-->
