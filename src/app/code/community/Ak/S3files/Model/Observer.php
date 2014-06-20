@@ -1,13 +1,15 @@
 <?php
 
 require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/wrapper/aS3StreamWrapper.class.php');
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/services/s3.class.php');
 
-use Aws\S3\S3Client;
 
-use Guzzle\Log\MonologLogAdapter;
-use Guzzle\Plugin\Log\LogPlugin;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
+//use Aws\S3\S3Client;
+//
+//use Guzzle\Log\MonologLogAdapter;
+//use Guzzle\Plugin\Log\LogPlugin;
+//use Monolog\Logger;
+//use Monolog\Handler\StreamHandler;
 
 class Ak_S3files_Model_Observer
 {
