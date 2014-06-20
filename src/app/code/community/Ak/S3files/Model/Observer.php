@@ -1,5 +1,7 @@
 <?php
 
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/wrapper/aS3StreamWrapper.class.php');
+
 use Aws\S3\S3Client;
 
 use Guzzle\Log\MonologLogAdapter;
@@ -21,32 +23,46 @@ class Ak_S3files_Model_Observer
         if (Mage::helper('ak_s3files')->s3MediaEnabled()) {
             $key = Mage::getStoreConfig(self::XML_PATH_AWS_KEY);
             $secret = Mage::getStoreConfig(self::XML_PATH_AWS_SECRET);
+            $region = 'ap-southeast-2';
 
-            // Create an Amazon S3 client object
-            $client = S3Client::factory(array(
-                'key'    => $key,
-                'secret' => $secret
-            ));
-
-
-            /* @todo change to mage log system */
-            // Create a log channel
-            $log = new Logger('aws');
-
-            $log->pushHandler(new StreamHandler(Mage::getBaseDir().'/var/log/s3_http.log', Logger::DEBUG));
-
-            // Create a log adapter for Monolog
-            $logger = new MonologLogAdapter($log);
-
-            // Create the LogPlugin
-            $logPlugin = new LogPlugin($logger);
+//            // Create an Amazon S3 client object
+//            $client = S3Client::factory(array(
+//                'key'    => $key,
+//                'secret' => $secret
+//            ));
 
 
-            $client->addSubscriber($logPlugin);
+
+//            /* @todo change to mage log system */
+//            // Create a log channel
+//            $log = new Logger('aws');
+//
+//            $log->pushHandler(new StreamHandler(Mage::getBaseDir().'/var/log/s3_http.log', Logger::DEBUG));
+//
+//            // Create a log adapter for Monolog
+//            $logger = new MonologLogAdapter($log);
+//
+//            // Create the LogPlugin
+//            $logPlugin = new LogPlugin($logger);
+//
+//
+//            $client->addSubscriber($logPlugin);
+//
+//
+//            // Register the stream wrapper from a client object
+//            $client->registerStreamWrapper();
 
 
-            // Register the stream wrapper from a client object
-            $client->registerStreamWrapper();
+            $wrapper = new aS3StreamWrapper();
+
+
+            $testCredentials = array('key' => $key, 'secretKey' => $secret, 'region' => $region);
+// Files we make with this protocol default to public
+            $publicOptions = array_merge($testCredentials, array('protocol' => 's3', 'acl' => AmazonS3::ACL_PUBLIC));
+            $wrapper->register($publicOptions);
+
+
+
         }
     }
 

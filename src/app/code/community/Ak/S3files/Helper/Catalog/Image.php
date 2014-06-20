@@ -134,39 +134,8 @@ class Ak_S3files_Helper_Catalog_Image extends Mage_Catalog_Helper_Image
                 $model->setBaseFile($this->getProduct()->getData($model->getDestinationSubdir()));
             }
 
+            return $model->getUrl();
 
-            // @todo queue check and thumbnail generation
-            //return $model->getUrl();
-
-//            // @problem....
-            //if ($model->isCached()) {
-              //  $this->log('cached');
-                return $model->getUrl();
-//            } else {
-//                $this->log('not cached');
-//
-//                // @todo could queue image gen here instead...
-//                //return $model->getUrl();
-//
-//                if ($this->_scheduleRotate) {
-//                    $model->rotate($this->getAngle());
-//                }
-//                $this->log('here1');
-//
-//                if ($this->_scheduleResize) {
-//                    $model->resize();
-//                }
-//                $this->log('here2');
-//                if ($this->getWatermark()) {
-//                    $model->setWatermark($this->getWatermark());
-//                }
-//                $this->log('here3');
-//
-//                $url = $model->saveFile()->getUrl();
-//
-//                $this->log('new url is '.$url);
-//
-//            }
         } catch (Exception $e) {
             $this->log('error: '.$e->getMessage());
             $this->log('falling back to default');
