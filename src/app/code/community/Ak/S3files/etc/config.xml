@@ -33,6 +33,11 @@
                 <class>Ak_S3files_Model</class>
             </ak_s3files>
 
+            <catalog>
+                <rewrite>
+                    <product_image>Ak_S3files_Model_Product_Image</product_image>
+                </rewrite>
+            </catalog>
         </models>
         <resources>
             <ak_s3files_setup>

@@ -1,15 +1,23 @@
 <?php
 
+//require Mage::getBaseDir() . '/lib/as3StreamWrapper/lib/vendor/aws-sdk/sdk.class.php';
 require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/wrapper/aS3StreamWrapper.class.php');
 require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/services/s3.class.php');
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/utilities/credential.class.php');
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/utilities/credentials.class.php');
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/lib/requestcore/requestcore.class.php');
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/utilities/request.class.php');
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/utilities/response.class.php');
+require(Mage::getBaseDir().'/lib/as3StreamWrapper/lib/vendor/aws-sdk/utilities/simplexml.class.php');
 
 
-//use Aws\S3\S3Client;
-//
-//use Guzzle\Log\MonologLogAdapter;
-//use Guzzle\Plugin\Log\LogPlugin;
-//use Monolog\Logger;
-//use Monolog\Handler\StreamHandler;
+
+use Aws\S3\S3Client;
+
+use Guzzle\Log\MonologLogAdapter;
+use Guzzle\Plugin\Log\LogPlugin;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class Ak_S3files_Model_Observer
 {
@@ -26,15 +34,15 @@ class Ak_S3files_Model_Observer
             $key = Mage::getStoreConfig(self::XML_PATH_AWS_KEY);
             $secret = Mage::getStoreConfig(self::XML_PATH_AWS_SECRET);
             $region = 'ap-southeast-2';
-
+//
 //            // Create an Amazon S3 client object
 //            $client = S3Client::factory(array(
 //                'key'    => $key,
 //                'secret' => $secret
 //            ));
-
-
-
+//
+//
+//
 //            /* @todo change to mage log system */
 //            // Create a log channel
 //            $log = new Logger('aws');
