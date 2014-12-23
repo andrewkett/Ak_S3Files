@@ -1,7 +1,7 @@
 # Magento Amazon S3 Files
 Save Magento assets to an Amazon S3 bucket
 
-*NOTE:* This extension is in its very early stages and it is not recommended for production sites.
+__NOTE: This extension is in its very early stages and it is not recommended for production sites.__
 
 ## Installation.
 
